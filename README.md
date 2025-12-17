@@ -207,4 +207,3 @@ Removes a product from the inventory.
 - **Request Parameters**: None
 - **Sample Response (204 No Content)**:
   (No content is returned upon successful deletion)
-# Prompt-Engineering
