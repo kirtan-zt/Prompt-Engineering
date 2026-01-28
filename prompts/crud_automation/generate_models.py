@@ -88,19 +88,19 @@ if __name__ == "__main__":
     one_shot_example = """
 from django.db import models
 
-class Product(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.IntegerField()
-    stock = models.IntegerField()
-    category = models.CharField(max_length=100)
+class model_name(models.Model):
+    schema_1 = models.CharField(max_length=100)
+    schema_2 = models.IntegerField()
 """
     model_request = (
         "Generate a single Django model named 'Product' for the 'ecommerce_app'. "
         "It must include the following fields: "
         "name (CharField, max 100), price (DecimalField with 10 digits and 2 decimal places), "
-        "stock (IntegerField) and category of the product (CharField, max 100). "
-        "Implement RegexValidator in name and category so that user can input special character or number"
-        "Implement MinValueValidator in price and stock such that the value should be more than 0"
+        "stock (IntegerField) and category (CharField, max 100). "
+        "Implement RegexValidator in name and category to allow ONLY alphanumeric characters, "
+        "spaces, and hyphens (reject all other special symbols). "
+        "Implement MinValueValidator in price such that it must be at least 0.01, "
+        "and in stock such that it must be at least 1. "
         "The model must include the required imports and a basic __str__ method."
     )
     
