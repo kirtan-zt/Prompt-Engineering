@@ -1,23 +1,23 @@
-# E-commerce Product API
+# E-commerce Project
 
-This project provides a RESTful API for managing e-commerce products using Django and Django REST Framework. It allows for basic CRUD (Create, Read, Update, Delete) operations on product data.
+This project is a simple e-commerce backend built using Django and Django REST framework. It provides a basic API for managing product information, including creating, retrieving, updating, and deleting products.
 
 ## Features
 
-*   **Product Management:**
-    *   Create new products with name, price, stock, and category.
-    *   Fetch all products.
-    *   Update the stock quantity of existing products.
-    *   Delete products.
-*   **Categorization:** Products can be assigned to categories.
-*   **RESTful API:** All functionalities are exposed through a clean and intuitive API.
+- **Product Management:**
+  - Create new products with name, price, stock, and category.
+  - Fetch all products.
+  - Update the stock quantity of existing products.
+  - Delete products.
+- **Categorization:** Products can be assigned to categories.
+- **RESTful API:** All functionalities are exposed through a RESTful API.
 
 ## Setup and Installation
 
 ### Prerequisites
 
-*   Python 3.6+
-*   `pip` (Python package installer)
+- Python 3.6+
+- pip
 
 ### Cloning the Repository
 
@@ -26,7 +26,7 @@ git clone https://github.com/kirtan-zt/Prompt-Engineering.git
 cd Prompt-Engineering
 ```
 
-### Setting up a Virtual Environment
+### Setting up the Virtual Environment
 
 It is highly recommended to use a virtual environment to manage project dependencies.
 
@@ -38,12 +38,12 @@ python -m venv venv
 # On Windows:
 # .\venv\Scripts\activate
 # On macOS/Linux:
-# source venv/bin/activate
+source venv/bin/activate
 ```
 
 ### Installing Dependencies
 
-Once the virtual environment is activated, install the required packages:
+Install Django and Django REST framework using pip.
 
 ```bash
 pip install django djangorestframework
@@ -53,17 +53,17 @@ pip install django djangorestframework
 
 ### Starting the Development Server
 
-To start the Django development server, navigate to the project's root directory (where `manage.py` is located) and run:
+Once the dependencies are installed and the virtual environment is activated, you can start the Django development server.
 
 ```bash
 python manage.py runserver
 ```
 
-The API will be accessible at `http://127.0.0.1:8000/`.
+The API will be available at `http://127.0.0.1:8000/`.
 
 ### Running Tests
 
-The project includes tests to verify the functionality of the API. To run the tests, execute:
+To run the project's tests, execute the following command:
 
 ```bash
 python manage.py test
@@ -71,131 +71,120 @@ python manage.py test
 
 ## API Reference
 
-The API is built using Django REST Framework's `DefaultRouter` and is accessible under the `/api/` path.
+The project exposes a RESTful API for product management. The base URL for the API is `http://127.0.0.1:8000/api/`.
 
 ### Products Endpoint
 
-Base URL: `/api/products/`
+The `/api/products/` endpoint handles CRUD operations for products.
 
 #### 1. Fetch All Products
 
-*   **Method:** `GET`
-*   **URL:** `/api/products/`
-*   **Description:** Retrieves a list of all available products.
-*   **Request Parameters:** None
-*   **Sample Response (200 OK):**
+- **Method:** `GET`
+- **URL:** `/api/products/`
+- **Description:** Retrieves a list of all products.
+- **Request Parameters:** None
+- **Sample Response (JSON):**
 
 ```json
 [
-    {
-        "id": 1,
-        "name": "Laptop",
-        "price": "1200.00",
-        "stock": 50,
-        "category": "Electronics"
-    },
-    {
-        "id": 2,
-        "name": "T-Shirt",
-        "price": "25.50",
-        "stock": 200,
-        "category": "Apparel"
-    }
-]
-```
-
-#### 2. Create a New Product
-
-*   **Method:** `POST`
-*   **URL:** `/api/products/`
-*   **Description:** Creates a new product.
-*   **Request Body (JSON):**
-
-```json
-{
-    "name": "Smartphone",
-    "price": "800.00",
-    "stock": 150,
-    "category": "Electronics"
-}
-```
-
-*   **Sample Response (201 Created):**
-
-```json
-{
-    "id": 3,
-    "name": "Smartphone",
-    "price": "800.00",
-    "stock": 150,
-    "category": "Electronics"
-}
-```
-
-#### 3. Retrieve a Specific Product
-
-*   **Method:** `GET`
-*   **URL:** `/api/products/{id}/` (Replace `{id}` with the product's ID)
-*   **Description:** Retrieves details of a specific product.
-*   **Request Parameters:**
-    *   `id` (integer, path parameter): The unique identifier of the product.
-*   **Sample Response (200 OK):**
-
-```json
-{
+  {
     "id": 1,
     "name": "Laptop",
     "price": "1200.00",
     "stock": 50,
     "category": "Electronics"
-}
+  },
+  {
+    "id": 2,
+    "name": "T-Shirt",
+    "price": "25.00",
+    "stock": 200,
+    "category": "Apparel"
+  }
+]
 ```
 
-*   **Sample Response (404 Not Found):**
+#### 2. Create a New Product
+
+- **Method:** `POST`
+- **URL:** `/api/products/`
+- **Description:** Creates a new product.
+- **Request Body (JSON):**
 
 ```json
 {
-    "detail": "Not found."
+  "name": "Smartphone",
+  "price": "800.00",
+  "stock": 150,
+  "category": "Electronics"
+}
+```
+
+- **Sample Response (JSON - on successful creation):**
+
+```json
+{
+  "id": 3,
+  "name": "Smartphone",
+  "price": "800.00",
+  "stock": 150,
+  "category": "Electronics"
+}
+```
+
+#### 3. Retrieve a Specific Product
+
+- **Method:** `GET`
+- **URL:** `/api/products/<int:pk>/`
+- **Description:** Retrieves details of a specific product by its ID.
+- **URL Parameters:**
+  - `pk` (integer): The unique identifier of the product.
+- **Sample Response (JSON):**
+
+```json
+{
+  "id": 1,
+  "name": "Laptop",
+  "price": "1200.00",
+  "stock": 50,
+  "category": "Electronics"
 }
 ```
 
 #### 4. Update Product Stock
 
-*   **Method:** `PATCH` or `PUT`
-*   **URL:** `/api/products/{id}/` (Replace `{id}` with the product's ID)
-*   **Description:** Updates the stock quantity of an existing product. `PATCH` is recommended for partial updates.
-*   **Request Body (JSON):**
+- **Method:** `PUT` or `PATCH`
+- **URL:** `/api/products/<int:pk>/`
+- **Description:** Updates the stock quantity of a specific product. You can send the entire product object with `PUT` or just the fields you want to update with `PATCH`.
+- **URL Parameters:**
+  - `pk` (integer): The unique identifier of the product.
+- **Request Body (JSON - example for PATCH):**
 
 ```json
 {
-    "stock": 45
+  "stock": 45
 }
 ```
 
-*   **Sample Response (200 OK):**
+- **Sample Response (JSON - on successful update):**
 
 ```json
 {
-    "id": 1,
-    "name": "Laptop",
-    "price": "1200.00",
-    "stock": 45,
-    "category": "Electronics"
+  "id": 1,
+  "name": "Laptop",
+  "price": "1200.00",
+  "stock": 45,
+  "category": "Electronics"
 }
 ```
 
 #### 5. Delete a Product
 
-*   **Method:** `DELETE`
-*   **URL:** `/api/products/{id}/` (Replace `{id}` with the product's ID)
-*   **Description:** Deletes a specific product.
-*   **Request Parameters:**
-    *   `id` (integer, path parameter): The unique identifier of the product to delete.
-*   **Sample Response (204 No Content):** (No response body)
-*   **Sample Response (404 Not Found):**
+- **Method:** `DELETE`
+- **URL:** `/api/products/<int:pk>/`
+- **Description:** Deletes a specific product by its ID.
+- **URL Parameters:**
+  - `pk` (integer): The unique identifier of the product.
+- **Sample Response (JSON - on successful deletion):**
 
-```json
-{
-    "detail": "Not found."
-}
-```
+An empty response with a `204 No Content` status code is typically returned on successful deletion.

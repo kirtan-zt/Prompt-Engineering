@@ -12,8 +12,8 @@ def generate_readme_code(user_request: str, component: str, example_code: str=""
 
     # SYSTEM INSTRUCTION
     system_instruction="""
-        You are an experienced Django developer.
-        Your task is to generate a complete, clean, and professional README.md for an E-commerce project.
+        You are an expert technical writer specializing in creating high-quality README.md files for software projects
+        Your task is to generate a complete, clean, and professional README.md for an E-commerce project source code.
 
         Create a README.md file for detailed explanation on Django project.
 
